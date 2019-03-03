@@ -1,0 +1,25 @@
+PImage cat;
+
+void setup() {
+  size(4032,3024);
+  cat = loadImage("KpoVDRfZTNqm6Y5vlvKVDA.jpg");
+}
+
+void draw() {
+  image(cat,0,0);
+  loadPixels();
+  
+  cat.loadPixels();
+  for (int y = 0; y < height; y++) {
+    for(int x = 0; x < width; x++) {
+      int loc = x + y*width;
+      float r = red(cat.pixels[loc]);
+      float g = green(cat.pixels[loc]);
+      float b = blue(cat.pixels[loc]);
+      pixels[loc] = color(g*r,r,b/g);
+    }
+  }
+  updatePixels();
+}
+      
+      
