@@ -1,0 +1,25 @@
+PImage cat;
+
+void setup() {
+  size(4032,3024);
+  cat = loadImage("KpoVDRfZTNqm6Y5vlvKVDA.jpg");
+}
+
+void draw() {
+  image(cat,0,0);
+  loadPixels();
+  
+  cat.loadPixels();
+  for (int y = 0; y < height; y++) {
+    for(int x = 0; x < width; x++) {
+      int loc = x + y*width;
+      float b = brightness(cat.pixels[loc]);
+      if (b > 75) {
+        pixels[loc] = color(255);
+      } else {
+        pixels[loc] = color(0);
+      }
+    }
+  }
+  updatePixels();
+}
