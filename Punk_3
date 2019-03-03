@@ -1,0 +1,28 @@
+PImage punk;
+
+void setup() {
+  size(4032,3024);
+  punk = loadImage("PaLuw0M8SUekqVaYh4qkQQ.jpg");
+}
+
+void draw() {
+  image(punk,0,0);
+  loadPixels();
+  punk.loadPixels();
+ for (int y = 0; y < height; y++) {
+    for(int x = 0; x < width; x++) {
+      int loc = x+y*width;
+      float r = red(punk.pixels [loc]); 
+      float g = green(punk.pixels[loc]);
+      float b = blue(punk.pixels[loc]);
+     
+      float tot = r+b+g*2;
+      
+      float grey = tot/3.;
+      
+      if (grey > 150) pixels[loc] = color(255);
+      if (grey < 127) pixels[loc] = color(0);
+    }
+  }
+  updatePixels();
+}
