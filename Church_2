@@ -1,0 +1,30 @@
+PImage church;
+
+void setup() {
+  size(1748,3114);
+  church = loadImage("fullsizeoutput_58.jpeg");
+}
+
+void draw() {
+  image(church,0,0);
+  loadPixels();
+  
+  church.loadPixels();
+  for (int y = 0; y < height; y++) {
+    for(int x = 0; x < width; x++) {
+      int loc = x+y*width;
+      float r = red(church.pixels[loc]);
+      float g = green(church.pixels[loc]);
+      float b = blue(church.pixels[loc]);
+      float d = dist(width/2, height/2, x,y);
+      float factor = map(d,-1000,1000,0,2);
+      if (y > height/2) {
+        pixels[loc] = color(b*factor*2, g*factor, r*factor);
+      }
+      else {
+        pixels[loc] = color(g*factor*2, b*factor, r*factor);
+      }
+    }
+  }
+  updatePixels();
+}
