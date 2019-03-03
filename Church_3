@@ -1,0 +1,34 @@
+PImage church;
+
+void setup() {
+  size(1748,3114);
+  church = loadImage("fullsizeoutput_58.jpeg");
+}
+
+void draw() {
+  image(church,0,0);
+  loadPixels();
+  
+  church.loadPixels();
+  for (int y = 0; y < height; y++) {
+    for(int x = 0; x < width; x++) {
+      int loc = x+y*width;
+      float b = brightness(church.pixels[loc]);
+      if(y<600) { //i dont think this is actually doing what i want it to do which is make the top of the tower to have more contrast
+        if (b > 100) {
+          pixels[loc] = color(255);
+        } else {
+          pixels[loc] = color(0);
+        }
+      }
+      if (b>25) {
+        pixels[loc] = color(255);
+      } else {
+        pixels[loc] = color(0);
+      }
+      
+    }
+  }
+  updatePixels();
+}
+      
