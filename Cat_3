@@ -1,0 +1,29 @@
+PImage cat;
+int pointillize =  16;
+
+void setup() {
+  size(4032,3024);
+  cat = loadImage("KpoVDRfZTNqm6Y5vlvKVDA.jpg");
+}
+
+void draw() {
+  image(cat,0,0);
+  loadPixels();
+  
+  cat.loadPixels();
+  for (int y = 0; y < height; y++) {
+    for(int x = 0; x < width; x++) {
+      int loc = x + y*width;
+      float r = red(cat.pixels[loc]);
+      float g = green(cat.pixels[loc]);
+      float b = blue(cat.pixels[loc]);
+      float d = dist(width/4,height/4,x,y);
+      float factor = map(d,-1000,200,0,2);
+      pixels[loc] = color(b*factor, b*factor, g*factor, r*r);
+      
+      
+      
+    }
+  }
+  updatePixels();
+}
